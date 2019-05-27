@@ -1,0 +1,37 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://Scenes/playerObjects/Player.cs" type="Script" id=1]
+
+[sub_resource type="CapsuleShape" id=1]
+height = 1.00391
+
+[sub_resource type="CapsuleMesh" id=2]
+
+[sub_resource type="BoxShape" id=3]
+extents = Vector3( 0.2, 0.2, 0.2 )
+
+[node name="Player" type="Spatial"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.10006, 0 )
+script = ExtResource( 1 )
+
+[node name="Rotation" type="Spatial" parent="."]
+
+[node name="PlayerElement" type="KinematicBody" parent="Rotation"]
+
+[node name="playerHitbox" type="CollisionShape" parent="Rotation/PlayerElement"]
+transform = Transform( 0.5, 0, 0, 0, -2.18557e-008, 1, 0, -0.5, -4.37114e-008, 0, 0.5, 0 )
+shape = SubResource( 1 )
+
+[node name="playerMesh" type="MeshInstance" parent="Rotation/PlayerElement/playerHitbox"]
+mesh = SubResource( 2 )
+material/0 = null
+
+[node name="Camera" type="Camera" parent="Rotation"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.41293, -0.304388 )
+
+[node name="footPad" type="Area" parent="."]
+transform = Transform( 2, 0, 0, 0, 0.2, 0, 0, 0, 2, 0, -1.0461, 0 )
+
+[node name="footPadCollisionArea" type="CollisionShape" parent="footPad"]
+shape = SubResource( 3 )
+
